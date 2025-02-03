@@ -46,37 +46,43 @@ $files = $conn->query("SELECT files.*, users.username FROM files JOIN users ON f
 <html>
 <head>
     <title>File Upload</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Add CSS for styling -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>File Upload</h1>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" required>
-        <button type="submit">Upload File</button>
-    </form>
+    <div class="container">
+        <h1>File Upload</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Upload File</button>
+        </form>
 
-    <h2>File List</h2>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Filename</th>
-            <th>Uploaded By</th>
-            <th>Action</th>
-        </tr>
-        <?php while ($row = $files->fetch_assoc()): ?>
-        <tr>
-            <td><?= $row['id'] ?></td>
-            <td><?= $row['filename'] ?></td>
-            <td><?= $row['username'] ?></td>
-            <td>
-                <?php if ($_SESSION['role'] === 'admin'): ?>
-                <a href="?delete_file=<?= $row['id'] ?>">Delete</a>
-                <?php else: ?>
-                <span>No action</span>
-                <?php endif; ?>
-            </td>
-        </tr>
-        <?php endwhile; ?>
-    </table>
+        <h2>File List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Filename</th>
+                    <th>Uploaded By</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = $files->fetch_assoc()): ?>
+                <tr>
+                    <td><?= $row['id'] ?></td>
+                    <td><?= $row['filename'] ?></td>
+                    <td><?= $row['username'] ?></td>
+                    <td>
+                        <?php if ($_SESSION['role'] === 'admin'): ?>
+                        <a href="?delete_file=<?= $row['id'] ?>">Delete</a>
+                        <?php else: ?>
+                        <span>No action</span>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

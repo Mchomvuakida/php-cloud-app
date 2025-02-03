@@ -8,8 +8,8 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Handle task creation
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_task'])) {
+// Only allow admin users to create tasks
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_task']) && $_SESSION['role'] === 'admin') {
     $title = $_POST['title'];
     $description = $_POST['description'];
     $user_id = $_SESSION['user_id'];  // Assign task to the logged-in user
@@ -44,40 +44,48 @@ if ($_SESSION['role'] === 'admin') {
 <html>
 <head>
     <title>Task Management</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Add CSS for styling -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Task Management</h1>
-    <form method="POST">
-        <input type="text" name="title" placeholder="Title" required>
-        <textarea name="description" placeholder="Description" required></textarea>
-        <button type="submit" name="create_task">Create Task</button>
-    </form>
+    <div class="container">
+        <h1>Task Management</h1>
+        <?php if ($_SESSION['role'] === 'admin'): ?>
+        <form method="POST">
+            <input type="text" name="title" placeholder="Title" required>
+            <textarea name="description" placeholder="Description" required></textarea>
+            <button type="submit" name="create_task">Create Task</button>
+        </form>
+        <?php endif; ?>
 
-    <h2>Task List</h2>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Assigned To</th>
-            <th>Action</th>
-        </tr>
-        <?php while ($row = $tasks->fetch_assoc()): ?>
-        <tr>
-            <td><?= $row['id'] ?></td>
-            <td><?= $row['title'] ?></td>
-            <td><?= $row['description'] ?></td>
-            <td><?= $row['username'] ?></td>
-            <td>
-                <?php if ($_SESSION['role'] === 'admin'): ?>
-                <a href="?delete_task=<?= $row['id'] ?>">Delete</a>
-                <?php else: ?>
-                <span>No action</span>
-                <?php endif; ?>
-            </td>
-        </tr>
-        <?php endwhile; ?>
-    </table>
+        <h2>Task List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Assigned To</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = $tasks->fetch_assoc()): ?>
+                <tr>
+                    <td><?= $row['id'] ?></td>
+                    <td><?= $row['title'] ?></td>
+                    <td><?= $row['description'] ?></td>
+                    <td><?= $row['username'] ?></td>
+                    <td>
+                        <?php if ($_SESSION['role'] === 'admin'): ?>
+                        <a href="?delete_task=<?= $row['id'] ?>">Delete</a>
+                        <?php else: ?>
+                        <span>No action</span>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

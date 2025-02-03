@@ -1,0 +1,5 @@
+.env
+mysql_data/
+nbproject/
+*.log
+app/uploads/

@@ -44,6 +44,7 @@ $users = $conn->query("SELECT * FROM users");
 <html>
 <head>
     <title>User Management</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <h1>User Management (Admin Only)</h1>

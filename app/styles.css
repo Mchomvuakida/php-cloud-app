@@ -1,214 +1,44 @@
-/* Reset and General Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* Main container to align form and table side by side */
+.user-management-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
-}
-
-/* Main container */
-.container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-    text-align: center;
-}
-
-/* Header Section */
-.task-header {
-    display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 20px;
+    gap: 20px;
+    max-width: 1000px;
+    margin: auto;
 }
 
-h1 {
-    color: #007bff;
-    font-size: 28px;
+/* Styling the form */
+.user-form {
+    flex: 1;
+    max-width: 300px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-    font-size: 18px;
-    color: black;
-    margin-top: 5px;
-}
-
-/* Forms and Inputs */
-form {
-    margin-bottom: 20px;
-}
-
-input, textarea, select, button {
-    display: block;
-    margin: 10px 0;
-    padding: 10px;
+/* Styling the table container */
+.user-table-container {
+    flex: 2;
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
 }
 
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* General table styling */
-table {
+/* Ensuring the table fits well */
+.user-table-container table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-table th, table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-table th {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-}
-
-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Center-align action buttons */
-table td:last-child {
-    text-align: center;
-}
-
-/* Add some spacing and styling to the action links */
-table a {
-    color: #007bff;
-    text-decoration: none;
-    margin: 0 5px;
-}
-
-table a:hover {
-    text-decoration: underline;
+    background: white;
 }
 
 /* Responsive Design */
-@media (max-width: 480px) {
-    .container {
-        max-width: 100%;
-        padding: 15px;
+@media (max-width: 768px) {
+    .user-management-container {
+        flex-direction: column;
+        align-items: center;
     }
 
-    input, textarea, select, button {
-        font-size: 14px;
+    .user-form {
+        width: 100%;
     }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    h2 {
-        font-size: 16px;
-    }
-}
-
-/* ---------- New Styles for Home Page ---------- */
-.home-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
-}
-
-/* Welcome Header */
-.home-container h1 {
-    color: #007bff;
-    font-size: 26px;
-    margin-bottom: 10px;
-}
-
-.home-container p {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Logout Button */
-.home-container .logout {
-    display: inline-block;
-    background-color: #dc3545;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-bottom: 20px;
-    transition: 0.3s ease;
-}
-
-.home-container .logout:hover {
-    background-color: #c82333;
-}
-
-/* Menu */
-.home-container h2 {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.home-container ul {
-    list-style: none;
-    padding: 0;
-}
-
-.home-container ul li {
-    margin: 10px 0;
-}
-
-.home-container ul li a {
-    display: block;
-    background-color: #007bff;
-    color: white;
-    padding: 12px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    transition: 0.3s ease;
-}
-
-.home-container ul li a:hover {
-    background-color: #0056b3;
 }

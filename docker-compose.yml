@@ -2,12 +2,12 @@ version: '3.8'
 
 services:
   web:
-    build: .  # Use the Dockerfile in the current directory
+    build: .  
     container_name: php_web
     ports:
       - "8080:80"
     volumes:
-      - ./app:/var/www/html  # Mount the app directory
+      - ./app:/var/www/html  
     depends_on:
       - db
 
@@ -22,8 +22,8 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql  # Persistent volume for MySQL data
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql  # Initialize database with SQL script
+      - mysql_data:/var/lib/mysql  
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql  
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -31,10 +31,10 @@ services:
     ports:
       - "8081:80"
     environment:
-      PMA_HOST: db  # Connect to the MySQL service
-      MYSQL_ROOT_PASSWORD: root  # Match the root password in the db service
+      PMA_HOST: db  
+      MYSQL_ROOT_PASSWORD: root  
     depends_on:
       - db
 
 volumes:
-  mysql_data:  # Define a named volume for MySQL data persistence
+  mysql_data:  
